@@ -1,0 +1,23 @@
+<h2>Lista de Inscrições</h2>
+
+<div class="contador">
+  <span>Total: {{ total }}</span>
+  <span>Concluídas: {{ concluidas }}</span>
+  <span>Pendentes: {{ pendentes }}</span>
+</div>
+
+@if (inscricao.length === 0) {
+  <p class="vazio">Nenhuma Inscricao cadastrada</p>
+} @else {
+  <ul>
+    @for (t of inscricao; track t.id) {
+      <li [class.status]="t.status">
+        <span class="nome">{{ t.nome }}</span>
+        <button class="btn-concluir" (click)="concluir(t.id)">Concluir</button>
+        <button class="btn-remover" (click)="remover(t.id)">Remover</button>
+      </li>
+    }
+  </ul>
+}
+
+<a routerLink="/">Voltar ao cadastro</a>
